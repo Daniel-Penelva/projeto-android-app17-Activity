@@ -2,54 +2,45 @@ package com.formacaoandroidstudio.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button buttonEnviar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toast.makeText(this, "onCreate", Toast.LENGTH_LONG).show();
+        buttonEnviar = findViewById(R.id.buttonEnviar);
+
+        /* Adicionando um evento de click no botão - dentro do parametro vai receber uma interface OnClickListener e instanciar
+        uma Classe anônima View. Dentro dela vai ser implementado o método de Click. */
+        buttonEnviar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                /* Vai de uma activity a outra activity através do método startActivity() que recebe como parâmetro um intent (intenção).
+                   Mas antes é preciso instanciar uma intent que recebe como parâmetro um contexto e a activity que quer abrir.
+                   Para passar dados pode usar o método putExtra. Dentro do parametro vai o indice do array e o valor.*/
+                Intent intent = new Intent(getApplicationContext(), SegundaActivity.class);
+                intent.putExtra("Nome", "Daniel Penelva");
+                intent.putExtra("Idade", 35);
+                startActivity(intent);
+
+
+            }
+        });
+
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Toast.makeText(this, "onStart", Toast.LENGTH_LONG).show();
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Toast.makeText(this, "onResume", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Toast.makeText(this, "onPause", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Toast.makeText(this, "onStop", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Toast.makeText(this, "onRestart", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Toast.makeText(this, "onDestroy", Toast.LENGTH_LONG).show();
-    }
 }
 
 /**
@@ -135,5 +126,10 @@ public class MainActivity extends AppCompatActivity {
  *                                                       (Classe Java)                        (Arquivo XML)
  *                    APP  <------------------------------ Activity <----------------------------- xml
  *                   Tela                                public Class Activity{}                 Login:
- *                  do App                                                                       Senha: 
+ *                  do App                                                                       Senha:
+ *
+ *  Criando uma Activity, para isso vai no package activity com o botão direito do mouse vai em:
+ *  new > activity > Empity Activity
+ *              OBS. Gallery (vai abrir a opção de vários layouts)
+ *  Ao criar a activity automaticamente também irá criar a activity_main.xml.
  * */
