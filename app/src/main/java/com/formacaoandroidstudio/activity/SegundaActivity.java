@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 public class SegundaActivity extends AppCompatActivity {
 
-    private TextView textNome, textIdade;
+    private TextView textNome, textIdade, textNomeCompleto, textEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,8 @@ public class SegundaActivity extends AppCompatActivity {
 
         textNome = findViewById(R.id.textNome);
         textIdade = findViewById(R.id.textIdade);
+        textNomeCompleto = findViewById(R.id.textNomeCompleto);
+        textEmail = findViewById(R.id.textEmail);
 
         /* Recuperar os dados enviados através do objeto Bundle que recupera de uma activity para outra activity. */
         Bundle dados = getIntent().getExtras();
@@ -25,9 +27,14 @@ public class SegundaActivity extends AppCompatActivity {
         String nome = dados.getString("Nome");
         int idade = dados.getInt("Idade");
 
+        Usuario usuario = (Usuario) dados.getSerializable("objeto");
+
         /* Configurar valores configurados - Lembrando que na tela só carrega String, logo temos que fazer um valueOf. */
         textNome.setText(nome);
         textIdade.setText(String.valueOf(idade));
+
+        textNomeCompleto.setText(usuario.getNome());
+        textEmail.setText(usuario.getEmail());
 
     }
 }

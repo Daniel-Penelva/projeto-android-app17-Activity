@@ -30,10 +30,14 @@ public class MainActivity extends AppCompatActivity {
                    Mas antes é preciso instanciar uma intent que recebe como parâmetro um contexto e a activity que quer abrir.
                    Para passar dados pode usar o método putExtra. Dentro do parametro vai o indice do array e o valor.*/
                 Intent intent = new Intent(getApplicationContext(), SegundaActivity.class);
+
+                Usuario usuario = new Usuario("Daniel Penelva de Andrade", "d4n.andrade@gmail.com");
+
                 intent.putExtra("Nome", "Daniel Penelva");
                 intent.putExtra("Idade", 35);
-                startActivity(intent);
 
+                intent.putExtra("objeto", usuario);
+                startActivity(intent);
 
             }
         });
